@@ -1,0 +1,11 @@
+env: local
+grpc_server:
+  port: 50051
+  timeout: 300ms
+pg:
+  host: localhost #PG_HOST
+  port: 5432
+  db: postgres #PG_DB
+  user: postgres #PG_USER
+  password: root #PG_PASSWORD
+  schema: s_exercise
