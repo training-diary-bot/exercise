@@ -9,6 +9,7 @@ import (
 	"exercise/pkg/grpc"
 	"exercise/pkg/logger"
 	"fmt"
+	"github.com/joho/godotenv"
 	"os"
 	"os/signal"
 	"syscall"
@@ -29,6 +30,10 @@ func main() {
 			os.Exit(1)
 		}
 	}()
+
+	if err := godotenv.Load(); err != nil {
+		log.Warn().Stack().Err(err).Msg("failed to load env")
+	}
 
 	cfg, err := config.Setup()
 	if err != nil {

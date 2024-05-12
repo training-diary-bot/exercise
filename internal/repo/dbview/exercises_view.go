@@ -6,13 +6,23 @@ const MuscleGroupTable = "muscle_groups"
 const (
 	ExercisesIDField          = "id"
 	ExercisesNameField        = "name"
-	ExercisesMuscleGroupField = "muscle_group"
+	ExercisesMuscleGroupField = "muscle_group_id"
+
+	MuscleGroupsIDField   = "id"
+	MuscleGroupsNameField = "name"
 )
 
-func GetAllFields() []string {
+func GetExercisesAllFields() []string {
 	return []string{
 		ExercisesIDField,
 		ExercisesNameField,
 		ExercisesMuscleGroupField,
+	}
+}
+
+func GetMuscleGroupsAllFields() []string {
+	return []string{
+		MuscleGroupsIDField,
+		MuscleGroupsNameField,
 	}
 }

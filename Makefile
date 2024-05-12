@@ -14,7 +14,7 @@ bin/migrate:
 build:
 	go build -tags musl -mod=vendor -o ${BUILD} ${MAIN}
 
-run:
+run: build
 	${BUILD}
 
 run-env:

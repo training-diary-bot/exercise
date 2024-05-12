@@ -15,7 +15,7 @@ require (
 	github.com/jackc/pgx/v5 v5.5.5
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.32.0
-	github.com/training-diary-bot/apis v1.0.7
+	github.com/training-diary-bot/apis v1.0.9-0.20240512153723-c6fa7924b01b
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0
 	go.opentelemetry.io/otel v1.24.0
 	google.golang.org/grpc v1.62.1

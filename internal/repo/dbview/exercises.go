@@ -6,27 +6,27 @@ import (
 )
 
 type Exercise struct {
-	ID          uuid.UUID
-	Name        string
-	MuscleGroup string
+	ID            uuid.UUID
+	Name          string
+	MuscleGroupID string
 }
 
-type MuscleGroups struct {
+func (ex Exercise) ToDomain() domain.Exercise {
+	return domain.Exercise{
+		ID:            ex.ID,
+		Name:          ex.Name,
+		MuscleGroupID: ex.MuscleGroupID,
+	}
+}
+
+type MuscleGroup struct {
 	ID   uuid.UUID
 	Name string
 }
 
-func ExerciseToDomain(ex Exercise) (domain.Exercise, error) {
-	return domain.Exercise{
-		ID:          ex.ID,
-		Name:        ex.Name,
-		MuscleGroup: ex.MuscleGroup,
-	}, nil
+func (mg MuscleGroup) ToDomain() domain.MuscleGroup {
+	return domain.MuscleGroup{
+		ID:   mg.ID,
+		Name: mg.Name,
+	}
 }
-
-//func MuscleGroupsToDomain(mg MuscleGroups) (domain.MuscleGroups, error) {
-//	return domain.MuscleGroups{
-//		ID:   mg.ID,
-//		Name: mg.Name,
-//	}, nil
-//}

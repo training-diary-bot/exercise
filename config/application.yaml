@@ -5,7 +5,6 @@ grpc_server:
 pg:
   host: localhost #PG_HOST
   port: 5432
-  db: postgres #PG_DB
-  user: postgres #PG_USER
-  password: root #PG_PASSWORD
-  schema: s_exercise
+  db: #PG_DB
+  user: #PG_USER
+  password: #PG_PASSWORD

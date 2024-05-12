@@ -23,10 +23,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExerciseClient interface {
-	CreateCustomExercise(ctx context.Context, in *CreateCustomExerciseRequest, opts ...grpc.CallOption) (*CreateCustomExerciseResponse, error)
-	GetExercisesByMuscleGroup(ctx context.Context, in *GetExercisesByMuscleGroupRequest, opts ...grpc.CallOption) (*GetExercisesByMuscleGroupResponse, error)
+	GetExercisesByIDs(ctx context.Context, in *GetExercisesByIDsRequest, opts ...grpc.CallOption) (*GetExercisesByIDsResponse, error)
+	GetMuscleGroupsByIDs(ctx context.Context, in *GetMuscleGroupsByIDsRequest, opts ...grpc.CallOption) (*GetMuscleGroupsByIDsResponse, error)
 	GetMuscleGroups(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMuscleGroupsResponse, error)
-	GetCustomExercises(ctx context.Context, in *GetCustomExercisesRequest, opts ...grpc.CallOption) (*GetCustomExercisesResponse, error)
+	GetExercisesByMuscleGroupID(ctx context.Context, in *GetExercisesByMuscleGroupIDRequest, opts ...grpc.CallOption) (*GetExercisesByMuscleGroupIDResponse, error)
 }
 
 type exerciseClient struct {
@@ -37,18 +37,18 @@ func NewExerciseClient(cc grpc.ClientConnInterface) ExerciseClient {
 	return &exerciseClient{cc}
 }
 
-func (c *exerciseClient) CreateCustomExercise(ctx context.Context, in *CreateCustomExerciseRequest, opts ...grpc.CallOption) (*CreateCustomExerciseResponse, error) {
-	out := new(CreateCustomExerciseResponse)
-	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/CreateCustomExercise", in, out, opts...)
+func (c *exerciseClient) GetExercisesByIDs(ctx context.Context, in *GetExercisesByIDsRequest, opts ...grpc.CallOption) (*GetExercisesByIDsResponse, error) {
+	out := new(GetExercisesByIDsResponse)
+	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/GetExercisesByIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *exerciseClient) GetExercisesByMuscleGroup(ctx context.Context, in *GetExercisesByMuscleGroupRequest, opts ...grpc.CallOption) (*GetExercisesByMuscleGroupResponse, error) {
-	out := new(GetExercisesByMuscleGroupResponse)
-	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/GetExercisesByMuscleGroup", in, out, opts...)
+func (c *exerciseClient) GetMuscleGroupsByIDs(ctx context.Context, in *GetMuscleGroupsByIDsRequest, opts ...grpc.CallOption) (*GetMuscleGroupsByIDsResponse, error) {
+	out := new(GetMuscleGroupsByIDsResponse)
+	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/GetMuscleGroupsByIDs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,9 +64,9 @@ func (c *exerciseClient) GetMuscleGroups(ctx context.Context, in *emptypb.Empty,
 	return out, nil
 }
 
-func (c *exerciseClient) GetCustomExercises(ctx context.Context, in *GetCustomExercisesRequest, opts ...grpc.CallOption) (*GetCustomExercisesResponse, error) {
-	out := new(GetCustomExercisesResponse)
-	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/GetCustomExercises", in, out, opts...)
+func (c *exerciseClient) GetExercisesByMuscleGroupID(ctx context.Context, in *GetExercisesByMuscleGroupIDRequest, opts ...grpc.CallOption) (*GetExercisesByMuscleGroupIDResponse, error) {
+	out := new(GetExercisesByMuscleGroupIDResponse)
+	err := c.cc.Invoke(ctx, "/exercise.v1.Exercise/GetExercisesByMuscleGroupID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,27 +77,27 @@ func (c *exerciseClient) GetCustomExercises(ctx context.Context, in *GetCustomEx
 // All implementations should embed UnimplementedExerciseServer
 // for forward compatibility
 type ExerciseServer interface {
-	CreateCustomExercise(context.Context, *CreateCustomExerciseRequest) (*CreateCustomExerciseResponse, error)
-	GetExercisesByMuscleGroup(context.Context, *GetExercisesByMuscleGroupRequest) (*GetExercisesByMuscleGroupResponse, error)
+	GetExercisesByIDs(context.Context, *GetExercisesByIDsRequest) (*GetExercisesByIDsResponse, error)
+	GetMuscleGroupsByIDs(context.Context, *GetMuscleGroupsByIDsRequest) (*GetMuscleGroupsByIDsResponse, error)
 	GetMuscleGroups(context.Context, *emptypb.Empty) (*GetMuscleGroupsResponse, error)
-	GetCustomExercises(context.Context, *GetCustomExercisesRequest) (*GetCustomExercisesResponse, error)
+	GetExercisesByMuscleGroupID(context.Context, *GetExercisesByMuscleGroupIDRequest) (*GetExercisesByMuscleGroupIDResponse, error)
 }
 
 // UnimplementedExerciseServer should be embedded to have forward compatible implementations.
 type UnimplementedExerciseServer struct {
 }
 
-func (UnimplementedExerciseServer) CreateCustomExercise(context.Context, *CreateCustomExerciseRequest) (*CreateCustomExerciseResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomExercise not implemented")
+func (UnimplementedExerciseServer) GetExercisesByIDs(context.Context, *GetExercisesByIDsRequest) (*GetExercisesByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetExercisesByIDs not implemented")
 }
-func (UnimplementedExerciseServer) GetExercisesByMuscleGroup(context.Context, *GetExercisesByMuscleGroupRequest) (*GetExercisesByMuscleGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetExercisesByMuscleGroup not implemented")
+func (UnimplementedExerciseServer) GetMuscleGroupsByIDs(context.Context, *GetMuscleGroupsByIDsRequest) (*GetMuscleGroupsByIDsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMuscleGroupsByIDs not implemented")
 }
 func (UnimplementedExerciseServer) GetMuscleGroups(context.Context, *emptypb.Empty) (*GetMuscleGroupsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMuscleGroups not implemented")
 }
-func (UnimplementedExerciseServer) GetCustomExercises(context.Context, *GetCustomExercisesRequest) (*GetCustomExercisesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCustomExercises not implemented")
+func (UnimplementedExerciseServer) GetExercisesByMuscleGroupID(context.Context, *GetExercisesByMuscleGroupIDRequest) (*GetExercisesByMuscleGroupIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetExercisesByMuscleGroupID not implemented")
 }
 
 // UnsafeExerciseServer may be embedded to opt out of forward compatibility for this service.
@@ -111,38 +111,38 @@ func RegisterExerciseServer(s grpc.ServiceRegistrar, srv ExerciseServer) {
 	s.RegisterService(&Exercise_ServiceDesc, srv)
 }
 
-func _Exercise_CreateCustomExercise_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCustomExerciseRequest)
+func _Exercise_GetExercisesByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetExercisesByIDsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExerciseServer).CreateCustomExercise(ctx, in)
+		return srv.(ExerciseServer).GetExercisesByIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/exercise.v1.Exercise/CreateCustomExercise",
+		FullMethod: "/exercise.v1.Exercise/GetExercisesByIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExerciseServer).CreateCustomExercise(ctx, req.(*CreateCustomExerciseRequest))
+		return srv.(ExerciseServer).GetExercisesByIDs(ctx, req.(*GetExercisesByIDsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Exercise_GetExercisesByMuscleGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetExercisesByMuscleGroupRequest)
+func _Exercise_GetMuscleGroupsByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMuscleGroupsByIDsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExerciseServer).GetExercisesByMuscleGroup(ctx, in)
+		return srv.(ExerciseServer).GetMuscleGroupsByIDs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/exercise.v1.Exercise/GetExercisesByMuscleGroup",
+		FullMethod: "/exercise.v1.Exercise/GetMuscleGroupsByIDs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExerciseServer).GetExercisesByMuscleGroup(ctx, req.(*GetExercisesByMuscleGroupRequest))
+		return srv.(ExerciseServer).GetMuscleGroupsByIDs(ctx, req.(*GetMuscleGroupsByIDsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -165,20 +165,20 @@ func _Exercise_GetMuscleGroups_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Exercise_GetCustomExercises_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCustomExercisesRequest)
+func _Exercise_GetExercisesByMuscleGroupID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetExercisesByMuscleGroupIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExerciseServer).GetCustomExercises(ctx, in)
+		return srv.(ExerciseServer).GetExercisesByMuscleGroupID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/exercise.v1.Exercise/GetCustomExercises",
+		FullMethod: "/exercise.v1.Exercise/GetExercisesByMuscleGroupID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExerciseServer).GetCustomExercises(ctx, req.(*GetCustomExercisesRequest))
+		return srv.(ExerciseServer).GetExercisesByMuscleGroupID(ctx, req.(*GetExercisesByMuscleGroupIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -191,20 +191,20 @@ var Exercise_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ExerciseServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateCustomExercise",
-			Handler:    _Exercise_CreateCustomExercise_Handler,
+			MethodName: "GetExercisesByIDs",
+			Handler:    _Exercise_GetExercisesByIDs_Handler,
 		},
 		{
-			MethodName: "GetExercisesByMuscleGroup",
-			Handler:    _Exercise_GetExercisesByMuscleGroup_Handler,
+			MethodName: "GetMuscleGroupsByIDs",
+			Handler:    _Exercise_GetMuscleGroupsByIDs_Handler,
 		},
 		{
 			MethodName: "GetMuscleGroups",
 			Handler:    _Exercise_GetMuscleGroups_Handler,
 		},
 		{
-			MethodName: "GetCustomExercises",
-			Handler:    _Exercise_GetCustomExercises_Handler,
+			MethodName: "GetExercisesByMuscleGroupID",
+			Handler:    _Exercise_GetExercisesByMuscleGroupID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
