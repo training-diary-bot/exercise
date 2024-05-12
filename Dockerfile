@@ -9,4 +9,4 @@ EXPOSE 9090
 COPY --from=builder /app/build/exercise /app
 ARG version
 RUN echo $version > /app/version.txt
-CMD /app/user
+CMD /app/exercise

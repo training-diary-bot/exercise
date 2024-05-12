@@ -61,7 +61,7 @@ func main() {
 	defer grpcSrv.Stop()
 	log.Info().Stack().Msgf("grpc server started port: %d", cfg.GRPCServer.Port)
 
-	log.Info().Stack().Msg("service User started")
+	log.Info().Stack().Msg("service Exercise started")
 
 	// on stop section
 	signals := make(chan os.Signal, 1)
