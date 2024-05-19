@@ -6,9 +6,9 @@ import (
 )
 
 type Exercise struct {
-	ID            uuid.UUID
-	Name          string
-	MuscleGroupID string
+	ID            uuid.UUID `db:"id"`
+	Name          string    `db:"name"`
+	MuscleGroupID string    `db:"muscle_group_id"`
 }
 
 func (ex Exercise) ToDomain() domain.Exercise {
@@ -20,8 +20,8 @@ func (ex Exercise) ToDomain() domain.Exercise {
 }
 
 type MuscleGroup struct {
-	ID   uuid.UUID
-	Name string
+	ID   uuid.UUID `db:"id"`
+	Name string    `db:"name"`
 }
 
 func (mg MuscleGroup) ToDomain() domain.MuscleGroup {

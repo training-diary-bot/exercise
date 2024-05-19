@@ -6,20 +6,20 @@ MIGRATIONS=$(PWD)/migrations
 
 include .env
 
-.PHONY: build
-
 bin/migrate:
 	GOBIN=$(BIN) go install -tags='postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 
+.PHONY: build
 build:
 	go build -tags musl -mod=vendor -o ${BUILD} ${MAIN}
 
+.PHONY: run
 run: build
 	${BUILD}
 
+.PHONY: run-env
 run-env:
 	docker-compose up -d
-	${MAKE} migrate-up
 
 .PHONY: migrate-new
 migrate-new: bin/migrate

@@ -1,0 +1,2 @@
+TRUNCATE TABLE muscle_groups
+TRUNCATE TABLE exercises

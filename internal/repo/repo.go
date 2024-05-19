@@ -44,7 +44,7 @@ func (r Repo) GetMuscleGroups(ctx context.Context) ([]domain.MuscleGroup, error)
 
 	var res []domain.MuscleGroup
 
-	if rows.Next() {
+	for rows.Next() {
 		var muscleGroupsView dbview.MuscleGroup
 
 		if err = pgxscan.ScanRow(&muscleGroupsView, rows); err != nil {
@@ -81,9 +81,9 @@ func (r Repo) GetMuscleGroupsByIDs(ctx context.Context, ids []uuid.UUID) ([]doma
 		return nil, errors.Wrap(err, "failed to query exec")
 	}
 
-	var res []domain.MuscleGroup
+	res := make([]domain.MuscleGroup, 0, len(ids))
 
-	if rows.Next() {
+	for rows.Next() {
 		var muscleGroupsView dbview.MuscleGroup
 
 		if err = pgxscan.ScanRow(&muscleGroupsView, rows); err != nil {
@@ -122,7 +122,7 @@ func (r Repo) GetExercisesByMuscleGroupID(ctx context.Context, id uuid.UUID) ([]
 
 	var res []domain.Exercise
 
-	if rows.Next() {
+	for rows.Next() {
 		var exView dbview.Exercise
 
 		if err = pgxscan.ScanRow(&exView, rows); err != nil {
@@ -161,7 +161,7 @@ func (r Repo) GetExercisesByIDs(ctx context.Context, ids []uuid.UUID) ([]domain.
 
 	var res []domain.Exercise
 
-	if rows.Next() {
+	for rows.Next() {
 		var exView dbview.Exercise
 
 		if err = pgxscan.ScanRow(&exView, rows); err != nil {
