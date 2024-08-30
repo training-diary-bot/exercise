@@ -23,8 +23,9 @@ func ExercisesToProto(exs []domain.Exercise) []*pb.ExerciseEntity {
 
 	for _, val := range exs {
 		res = append(res, &pb.ExerciseEntity{
-			Id:   val.ID.String(),
-			Name: val.Name,
+			Id:            val.ID.String(),
+			Name:          val.Name,
+			MuscleGroupId: val.MuscleGroupID,
 		})
 	}
 

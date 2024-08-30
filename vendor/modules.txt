@@ -130,9 +130,8 @@ github.com/prometheus/procfs/internal/util
 github.com/rs/zerolog
 github.com/rs/zerolog/internal/cbor
 github.com/rs/zerolog/internal/json
-# github.com/training-diary-bot/apis v1.0.9-0.20240512153723-c6fa7924b01b
+# github.com/training-diary-bot/apis v1.0.9-0.20240830085118-f09e252a9798
 ## explicit; go 1.22
-github.com/training-diary-bot/apis/genproto/go/common/v1
 github.com/training-diary-bot/apis/genproto/go/exercise/v1
 # go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0
 ## explicit; go 1.20

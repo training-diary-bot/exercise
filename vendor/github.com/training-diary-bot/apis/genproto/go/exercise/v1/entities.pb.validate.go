@@ -61,6 +61,8 @@ func (m *ExerciseEntity) validate(all bool) error {
 
 	// no validation rules for Name
 
+	// no validation rules for MuscleGroupId
+
 	if len(errors) > 0 {
 		return ExerciseEntityMultiError(errors)
 	}
